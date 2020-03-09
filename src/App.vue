@@ -6,13 +6,15 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Prosthesis from './components/Prosthesis.vue';
+import Treatment from './components/Treatment.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    HelloWorld
-  }
+    Prosthesis,
+    Treatment,
+  },
 };
 </script>
 
