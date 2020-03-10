@@ -336,6 +336,10 @@ export default {
     transform: translateX(21rem);
     transition: transform 0.4s ease;
 
+    @include media-breakpoint-up(lg) {
+      transform: translateX(15rem);
+    }
+
     &--translate {
       transform: translateX(0);
     }

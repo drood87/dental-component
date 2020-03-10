@@ -70,13 +70,13 @@ export default {
     font-size: 2.8rem;
   }
   &__list {
-    max-width: 40vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     padding-top: 15rem;
     margin: 0 auto;
     column-gap: 4rem;
+    max-width: 50vw;
   }
 
   &__item {
