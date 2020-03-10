@@ -120,7 +120,7 @@
         </div>
       </div>
       <div class="bubble" v-if="askedContent === content.graphic2">
-        <p>2 x jährlich im Jahr ärztlich empfohlen</p>
+        <p>2 x Jahr ärztlich empfohlen</p>
       </div>
       <transition name="content">
         <div class="dental__content" v-if="isDetailedGraphicActive">
