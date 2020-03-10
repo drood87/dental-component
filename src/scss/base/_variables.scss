@@ -1,0 +1,36 @@
+$font-family: 'MetaPro', Arial;
+
+$black: #000;
+$white: #fff;
+
+$blue-lightest: #CAE9F0;
+$blue-light: #a1cedc;
+$blue-mid: #006c8c;
+$blue-dark: #0a4a5d;
+$blue-darkest: #002e3c;
+
+$light-gray: #dedede;
+$lightest-gray: #f2f2f2;
+$mid-gray: #979797;
+$dark-gray: #646464;
+
+$red: #B70124;
+$rose: #f2bfc9;
+$green: #5E9D1B;
+$light-green: #cee840;
+
+$color-headline-gradient-start: #b2d1da;
+$color-headline-gradient-end: #bed7a2;
+
+$color-btn-gradient-start: $blue-mid;
+$color-btn-gradient-end: $blue-dark;
+
+$nav-height: 70px;
+
+$z-index: (
+    '1' : 1000,
+    '2' : 2000,
+    '3' : 3000,
+    '4' : 4000,
+    '5' : 5000,
+);
