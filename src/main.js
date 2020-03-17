@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import App from './App.vue';
+import AppMedizduoDental from './App-Medizduo-Dental.vue';
 
 Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app');
+  render: h => h(AppMedizduoDental),
+}).$mount('#appMedizduoDental');

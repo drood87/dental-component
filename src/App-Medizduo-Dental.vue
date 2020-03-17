@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app">
+  <div id="appMedizduoDental" class="app-medizduo-dental">
     <nav class="nav">
       <ul class="nav__list">
         <li
@@ -28,7 +28,7 @@ import Prosthesis from './components/Prosthesis.vue';
 import Treatment from './components/Treatment.vue';
 
 export default {
-  name: 'App',
+  name: 'AppMedizduoDental',
   components: {
     Prosthesis,
     Treatment,
@@ -56,7 +56,7 @@ export default {
 <style lang="scss">
 @import './main.scss';
 
-.app {
+.app-medizduo-dental {
   @include media-breakpoint-up(sm) {
     display: none;
   }
