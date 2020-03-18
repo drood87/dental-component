@@ -194,7 +194,7 @@
               </div>
             </div>
             <button
-              class="btn btn-secondary"
+              class="god-btn god-btn-secondary"
               v-if="!showMediBenefit"
               @click="toggleBenefits"
             >
@@ -301,6 +301,7 @@ export default {
 
 <style lang="scss" scoped>
 @import './../main.scss';
+@import './../scss/components/_button.scss';
 
 .content-enter-active,
 .content-leave-active {
@@ -313,31 +314,30 @@ export default {
 }
 
 .dental {
-  width: 86vw;
-  padding: 5rem;
+  padding: 5em;
   margin: 0 auto;
 
   &__wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 5em;
     justify-items: center;
     align-items: center;
-    max-width: 119rem;
+    max-width: 119em;
     margin: 0 auto;
     position: relative;
-    height: 45rem;
+    height: 45em;
   }
 
   &__graphics-wrapper {
     width: 100%;
     height: auto;
     position: relative;
-    transform: translateX(21rem);
+    transform: translateX(21em);
     transition: transform 0.4s ease;
 
     @include media-breakpoint-up(lg) {
-      transform: translateX(15rem);
+      transform: translateX(15em);
     }
 
     &--translate {
@@ -367,29 +367,29 @@ export default {
     height: 90%;
 
     &-headline {
-      font-size: 3rem;
+      font-size: 3em;
       font-weight: 500;
-      margin-bottom: 2rem;
+      margin-bottom: 2em;
 
       @include media-breakpoint-up(lg) {
-        font-size: 2.5rem;
+        font-size: 2.5em;
       }
 
       &--small {
-        font-size: 1.8rem;
+        font-size: 0.8em;
         font-weight: 400;
       }
     }
 
     &-list {
-      font-size: 1.8rem;
+      font-size: 1.8em;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      row-gap: 0.8rem;
+      row-gap: 0.8em;
 
       @include media-breakpoint-up(lg) {
-        font-size: 1.2rem;
+        font-size: 1.2em;
       }
     }
 
@@ -400,27 +400,27 @@ export default {
         color: $red;
       }
       &--big {
-        font-size: 2.5rem;
+        font-size: 2.5em;
 
         @include media-breakpoint-up(lg) {
-          font-size: 2rem;
+          font-size: 2em;
         }
       }
     }
 
     &-total {
-      font-size: 1.8rem;
+      font-size: 1.8em;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      margin: 5rem 0 8rem 0;
-      padding: 1.5rem 0 1.5rem;
+      margin: 2.5em 0 4em 0;
+      padding: 0.5em 0 0.5em;
       border-top: 2px solid $light-gray;
       position: relative;
 
       @include media-breakpoint-up(lg) {
-        margin: 3rem 0 3rem 0;
-        font-size: 1.2rem;
+        margin: 3em 0 3em 0;
+        font-size: 1.2em;
       }
 
       &--border-bottom {
@@ -430,16 +430,16 @@ export default {
       &--strikethrough {
         &:after {
           content: '';
-          top: 30px;
+          top: 2.1em;
           left: 0;
-          height: 3px;
+          height: 0.1em;
           background: $red;
           position: absolute;
           width: 100%;
 
           @include media-breakpoint-up(lg) {
-            top: 26px;
-            height: 2px;
+            top: 1.6em;
+            height: 0.1em;
           }
         }
       }
@@ -454,21 +454,21 @@ export default {
     }
 
     &-desc {
-      font-size: 1.8rem;
+      font-size: 1.8em;
 
       @include media-breakpoint-up(lg) {
-        font-size: 1.1rem;
+        font-size: 1.1em;
       }
     }
 
     &-price {
-      font-size: 4rem;
+      font-size: 4em;
       font-weight: bold;
       color: $green;
       justify-self: right;
 
       @include media-breakpoint-up(lg) {
-        font-size: 3rem;
+        font-size: 3em;
       }
     }
   }

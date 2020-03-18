@@ -1,5 +1,5 @@
 <template>
-  <div id="appMedizduoDental" class="app-medizduo-dental">
+  <div id="appMedizduoDental" class="app-medizduo-dental main-wrapper">
     <nav class="nav">
       <ul class="nav__list">
         <li
@@ -53,8 +53,28 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import './main.scss';
+
+.main-wrapper {
+  font-size: 10px;
+  font-family: 'MetaPro', Arial;
+
+  &* {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  & p {
+    margin: 0;
+  }
+
+  & ul {
+    list-style-type: none;
+    font-weight: 300;
+    line-height: 2em;
+  }
+}
 
 .app-medizduo-dental {
   @include media-breakpoint-up(sm) {
@@ -63,19 +83,19 @@ export default {
 }
 
 .nav {
-  font-size: 3.5rem;
+  font-size: 3.5em;
   color: $blue-dark;
 
   @include media-breakpoint-up(lg) {
-    font-size: 2.8rem;
+    font-size: 2.8em;
   }
   &__list {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    padding-top: 15rem;
+    padding-top: 1.5em;
     margin: 0 auto;
-    column-gap: 4rem;
+    column-gap: 4em;
     max-width: 50vw;
   }
 

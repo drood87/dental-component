@@ -1,67 +1,72 @@
-.btn {
-    font-family: $font-family;
-    line-height: 1.23;
-    text-align: center;
-    font-weight: bold;
-    font-size: 22px;
-    padding: 2.3px 6.3rem;
-    border-radius: 50px;
-    transition: box-shadow .4s;
-    border: none;
-    outline: none;
+.god-btn {
+  font-family: $font-family;
+  line-height: 1.23;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
+  padding: 1em 3.3em;
+  border-radius: 50px;
+  transition: box-shadow 0.4s;
+  border: none;
+  outline: none;
+
+  @include media-breakpoint-up(lg) {
+    font-size: 1.5em;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.2em;
+  }
+
+  &:hover,
+  &:active {
+    color: $blue-mid;
+    border: 3px solid $blue-light;
+    padding: 1em 3.3em;
+    box-shadow: 0 6px 12px 0 rgba($black, 0.16);
 
     @include media-breakpoint-up(lg) {
-        font-size: 1.5rem;
-
+      border: 1px solid $blue-light;
     }
+  }
 
-    @include media-breakpoint-up(md) {
-        font-size: 1.2rem;
+  &-primary {
+    color: $white;
+    background-image: linear-gradient(
+      to bottom,
+      $color-btn-gradient-start,
+      $color-btn-gradient-end
+    );
+    box-shadow: 0 3px 6px 0 rgba($black, 0.16);
+
+    &:hover,
+    &:active {
+      color: $blue-mid;
+      background: $white;
+    }
+  }
+
+  &-default {
+    color: $blue-mid;
+    background: $white;
+  }
+
+  &-secondary {
+    color: $blue-mid;
+    background: $lightest-gray;
+    width: 100%;
+
+    &:hover {
+      padding: 1em 3.3em;
+
+      @include media-breakpoint-up(lg) {
+        padding: 1.3em 0;
       }
-
-
-    &:hover, &:active {
-        color: $blue-mid;
-        border: 3px solid $blue-light;
-        padding: 2rem 6rem;
-        box-shadow: 0 6px 12px 0 rgba($black, 0.16);
-
-        @include media-breakpoint-up(lg) {
-            border: 1px solid $blue-light;
-        }
     }
 
-    &-primary {
-        color: $white;
-        background-image: linear-gradient(to bottom, $color-btn-gradient-start, $color-btn-gradient-end);
-        box-shadow: 0 3px 6px 0 rgba($black, 0.16);
-        &:hover, &:active {
-            color: $blue-mid;
-            background: $white;
-        }
+    @include media-breakpoint-up(lg) {
+      padding: 1.5em;
+      width: 80%;
     }
-
-    &-default {
-        color: $blue-mid;
-        background: $white;
-    }
-
-    &-secondary {
-        color: $blue-mid;
-        background: $lightest-gray;
-        padding: 2.3rem 0;
-        width: 100%;
-        &:hover {
-            padding: 20px 0;
-
-            @include media-breakpoint-up(lg) {
-                padding: 1.3rem 0;
-            }
-        }
-
-        @include media-breakpoint-up(lg) {
-            padding: 1.5rem;
-            width: 80%;
-        }
-    }
+  }
 }
