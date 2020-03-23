@@ -294,6 +294,7 @@ export default {
     };
   },
   created() {
+    console.log('test');
     this.preloadImages();
   },
   computed: {
