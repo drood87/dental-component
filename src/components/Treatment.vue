@@ -16,6 +16,7 @@
               ? 'dental__graphic--default dental__graphic--translate'
               : ''
           "
+          rel="preload"
         />
         <transition-group name="image" mode="out-in">
           <img
@@ -23,6 +24,7 @@
             :alt="askedContent.altText"
             class="dental__graphic"
             :key="askedContent.headline"
+            rel="preload"
           />
         </transition-group>
         <div
@@ -331,8 +333,8 @@ export default {
 
 .content-enter,
 .content-leave-to {
-  max-height: 0px;
   opacity: 0.4;
+  max-height: 0px;
   max-width: 0px;
 }
 
@@ -409,6 +411,10 @@ export default {
     position: relative;
     transform: translateX(21em);
     transition: transform 0.4s ease;
+
+    @include media-breakpoint-up(lg) {
+      transform: translateX(15em);
+    }
 
     &--translate {
       transform: translateX(0);
