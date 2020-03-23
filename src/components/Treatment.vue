@@ -337,6 +337,7 @@ export default {
       this.content.graphic1.graphicPath = otherTreatmentImg.src;
       this.content.graphic2.graphicPath = cleaningImg.src;
       this.content.graphic3.graphicPath = professionalCleanImg.src;
+      console.log('test:', this.otherTreatmentImg);
     },
   },
 };
