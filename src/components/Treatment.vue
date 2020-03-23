@@ -235,6 +235,9 @@ export default {
   data() {
     return {
       activeGraphic: false,
+      otherTreatmentImg: '',
+      cleaningImg: '',
+      professionalCleanImg: '',
       detailedGraphics: {
         graphic1: false,
         graphic2: false,
@@ -243,7 +246,7 @@ export default {
       isDetailedGraphicActive: false,
       content: {
         graphic1: {
-          graphicPath: require('../../public/ZB-Sonstige.png'),
+          graphicPath: '',
           altText: 'Sonstige Behandlungen',
           headline: 'Sonstige Behandlungen',
           approxPrice: '',
@@ -255,7 +258,7 @@ export default {
           priceWithMediz: 'kostenfrei',
         },
         graphic2: {
-          graphicPath: require('../../public/ZB-PZR.png'),
+          graphicPath: '',
           altText: 'Professionelle Zahnreinigung',
           headline: 'Professionelle Zahnreinigung',
           approxPrice: '150 €',
@@ -265,7 +268,7 @@ export default {
           priceWithMediz: 'kostenfrei',
         },
         graphic3: {
-          graphicPath: require('../../public/ZB-Fuellung.png'),
+          graphicPath: '',
           altText: 'Kunststofffüllung',
           headline: 'Kunststofffüllung',
           approxPrice: '100 €',
@@ -289,6 +292,9 @@ export default {
       },
       showMediBenefit: false,
     };
+  },
+  mounted() {
+    this.preloadImages();
   },
   computed: {
     benefitStyles() {
@@ -314,6 +320,23 @@ export default {
     },
     toggleBenefits() {
       this.showMediBenefit = !this.showMediBenefit;
+    },
+    preloadImages() {
+      const otherTreatmentImg = new Image();
+      const cleaningImg = new Image();
+      const professionalCleanImg = new Image();
+
+      otherTreatmentImg.src = require('../../public/ZE-Keramikbruecke.png');
+      cleaningImg.src = require('../../public/ZE-Implantat.png');
+      professionalCleanImg.src = require('../../public/ZE-Keramikkrone.png');
+
+      this.otherTreatmentImg = otherTreatmentImg;
+      this.cleaningImg = cleaningImg;
+      this.proprofessionalCleanImg = professionalCleanImg;
+
+      this.content.graphic1.graphicPath = otherTreatmentImg.src;
+      this.content.graphic2.graphicPath = cleaningImg.src;
+      this.content.graphic3.graphicPath = professionalCleanImg.src;
     },
   },
 };

@@ -198,6 +198,10 @@ export default {
   data() {
     return {
       activeGraphic: false,
+      ceramicImg: '',
+      implantantImg: '',
+      ceramicCroneImg: '',
+      inlayImg: '',
       detailedGraphics: {
         graphic1: false,
         graphic2: false,
@@ -207,7 +211,7 @@ export default {
       isDetailedGraphicActive: false,
       content: {
         graphic1: {
-          graphicPath: require('../../public/ZE-Keramikbruecke.png'),
+          graphicPath: '',
           altText: 'Vollkeramik-Brücke',
           headline: 'Vollkeramik-Brücke',
           approxPrice: '1.800 €',
@@ -217,7 +221,7 @@ export default {
           priceWithMediz: '180 €',
         },
         graphic2: {
-          graphicPath: require('../../public/ZE-Implantat.png'),
+          graphicPath: '',
           altText: 'Implantant',
           headline: 'Implantant',
           approxPrice: '3.950 €',
@@ -227,7 +231,7 @@ export default {
           priceWithMediz: '395 €',
         },
         graphic3: {
-          graphicPath: require('../../public/ZE-Keramikkrone.png'),
+          graphicPath: '',
           altText: 'Vollkeramik-Krone',
           headline: 'Vollkeramik-Krone',
           approxPrice: '1.000 €',
@@ -237,7 +241,7 @@ export default {
           priceWithMediz: '100 €',
         },
         graphic4: {
-          graphicPath: require('../../public/ZE-Inlay.png'),
+          graphicPath: '',
           altText: 'Keramik-Inlay',
           headline: 'Keramik-Inlay',
           approxPrice: '660 €',
@@ -260,6 +264,9 @@ export default {
       showMediBenefit: false,
     };
   },
+  mounted() {
+    this.preloadImages();
+  },
   computed: {
     benefitStyles() {
       return {
@@ -274,8 +281,10 @@ export default {
         if (this.detailedGraphics[graphic] !== true) {
           this.detailedGraphics[key] = false;
         }
+
         this.askedContent = this.content[graphic];
       }
+
       this.detailedGraphics[graphic] = !this.detailedGraphics[graphic];
       this.isDetailedGraphicActive = this.detailedGraphics[graphic];
       this.showMediBenefit = false;
@@ -283,6 +292,27 @@ export default {
     },
     toggleBenefits() {
       this.showMediBenefit = !this.showMediBenefit;
+    },
+    preloadImages() {
+      const ceramicImg = new Image();
+      const implantantImg = new Image();
+      const ceramicCroneImg = new Image();
+      const inlayImg = new Image();
+
+      ceramicImg.src = require('../../public/ZE-Keramikbruecke.png');
+      implantantImg.src = require('../../public/ZE-Implantat.png');
+      ceramicCroneImg.src = require('../../public/ZE-Keramikkrone.png');
+      inlayImg.src = require('../../public/ZE-Inlay.png');
+
+      this.ceramicImg = ceramicImg;
+      this.implantantImg = implantantImg;
+      this.ceramicCroneImg = ceramicCroneImg;
+      this.inlayImg = inlayImg;
+
+      this.content.graphic1.graphicPath = ceramicImg.src;
+      this.content.graphic2.graphicPath = implantantImg.src;
+      this.content.graphic3.graphicPath = ceramicCroneImg.src;
+      this.content.graphic4.graphicPath = inlayImg.src;
     },
   },
 };
