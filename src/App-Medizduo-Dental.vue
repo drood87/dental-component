@@ -89,13 +89,14 @@ export default {
   @include media-breakpoint-up(lg) {
     font-size: 2.8em;
   }
+
   &__list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    padding-top: 1.5em;
+    grid-template-columns: repeat(2, min-content);
+    justify-content: center;
+    padding: 1.5em 0 0 0;
     margin: 0 auto;
-    column-gap: 4em;
+    column-gap: 1em;
     max-width: 50vw;
   }
 

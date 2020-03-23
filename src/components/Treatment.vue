@@ -11,38 +11,20 @@
           src="./../assets/ZB-leer.png"
           alt="Zahnersatz leer"
           class="dental__graphic"
-          :class="isDetailedGraphicActive ? 'dental__graphic--default' : ''"
-        />
-        <img
-          src="./../assets/ZB-Sonstige.png"
-          alt="Sonstige Behandlungen"
-          class="dental__graphic"
           :class="
-            detailedGraphics.graphic1
-              ? 'dental__graphic--show'
-              : 'dental__graphic--hide'
+            isDetailedGraphicActive
+              ? 'dental__graphic--default dental__graphic--translate'
+              : ''
           "
         />
-        <img
-          src="./../assets/ZB-PZR.png"
-          alt="Professionelle Zahnreinigung"
-          class="dental__graphic"
-          :class="
-            detailedGraphics.graphic2
-              ? 'dental__graphic--show'
-              : 'dental__graphic--hide'
-          "
-        />
-        <img
-          src="./../assets/ZB-Fuellung.png"
-          alt="Implantant"
-          class="dental__graphic"
-          :class="
-            detailedGraphics.graphic3
-              ? 'dental__graphic--show'
-              : 'dental__graphic--hide'
-          "
-        />
+        <transition-group name="image" mode="out-in">
+          <img
+            :src="askedContent.graphicPath"
+            :alt="askedContent.altText"
+            class="dental__graphic"
+            :key="askedContent.headline"
+          />
+        </transition-group>
         <div
           class="dental__btn-plus dental__btn-plus--p1"
           @click="toggleGraphic('graphic1')"
@@ -119,11 +101,16 @@
           </svg>
         </div>
       </div>
+
       <div class="bubble" v-if="askedContent === content.graphic2">
         <p>2 x Jahr ärztlich empfohlen</p>
       </div>
-      <transition name="content">
-        <div class="dental__content" v-if="isDetailedGraphicActive">
+      <transition-group name="content" mode="out-in">
+        <div
+          class="dental__content"
+          v-if="isDetailedGraphicActive"
+          :key="activeGraphic"
+        >
           <div class="dental__content-wrapper">
             <h3 class="dental__content-headline">
               {{ askedContent.headline }}
@@ -152,7 +139,8 @@
                 class="dental__content-desc"
                 v-if="askedContent === content.graphic1"
               >
-                Zahnversieglung <b>je Zahn</b>
+                Zahnversieglung
+                <b>je Zahn</b>
               </div>
               <div
                 class="dental__content-price"
@@ -164,7 +152,8 @@
                 class="dental__content-desc"
                 v-if="askedContent === content.graphic1"
               >
-                Fluoridieren <b>je Zahn</b>
+                Fluoridieren
+                <b>je Zahn</b>
               </div>
               <div
                 class="dental__content-price"
@@ -208,13 +197,15 @@
                 {{ askedContent.ownShare }}
               </div>
             </div>
-            <button
-              class="god-btn god-btn-secondary"
-              v-if="!showMediBenefit"
-              @click="toggleBenefits"
-            >
-              Was bringt MediZ Duo?
-            </button>
+            <div class="dental__button-wrapper" v-if="!showMediBenefit">
+              <button
+                class="god-btn god-btn-secondary"
+                v-if="!showMediBenefit"
+                @click="toggleBenefits"
+              >
+                Was bringt MediZ Duo?
+              </button>
+            </div>
           </div>
           <div class="dental__benefit-wrapper" v-if="showMediBenefit">
             <div class="dental__benefit-content">
@@ -231,7 +222,7 @@
             </div>
           </div>
         </div>
-      </transition>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -241,6 +232,7 @@ export default {
   name: 'prothesis',
   data() {
     return {
+      activeGraphic: false,
       detailedGraphics: {
         graphic1: false,
         graphic2: false,
@@ -249,6 +241,8 @@ export default {
       isDetailedGraphicActive: false,
       content: {
         graphic1: {
+          graphicPath: require('../../public/ZB-Sonstige.png'),
+          altText: 'Sonstige Behandlungen',
           headline: 'Sonstige Behandlungen',
           approxPrice: '',
           sealPerTooth: '18 €',
@@ -259,6 +253,8 @@ export default {
           priceWithMediz: 'kostenfrei',
         },
         graphic2: {
+          graphicPath: require('../../public/ZB-PZR.png'),
+          altText: 'Professionelle Zahnreinigung',
           headline: 'Professionelle Zahnreinigung',
           approxPrice: '150 €',
           gkvShare: '- 0 €',
@@ -267,6 +263,8 @@ export default {
           priceWithMediz: 'kostenfrei',
         },
         graphic3: {
+          graphicPath: require('../../public/ZB-Fuellung.png'),
+          altText: 'Kunststofffüllung',
           headline: 'Kunststofffüllung',
           approxPrice: '100 €',
           gkvShare: '- 30 €',
@@ -276,6 +274,8 @@ export default {
         },
       },
       askedContent: {
+        graphicPath: '',
+        altText: '',
         headline: '',
         approxPrice: '',
         sealPerTooth: '',
@@ -308,6 +308,7 @@ export default {
       this.detailedGraphics[graphic] = !this.detailedGraphics[graphic];
       this.isDetailedGraphicActive = this.detailedGraphics[graphic];
       this.showMediBenefit = false;
+      this.activeGraphic = !this.activeGraphic;
     },
     toggleBenefits() {
       this.showMediBenefit = !this.showMediBenefit;
@@ -322,12 +323,29 @@ export default {
 
 .content-enter-active,
 .content-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 1s;
+  overflow: hidden;
+  max-height: 90%;
+  max-width: 100%;
 }
 
 .content-enter,
 .content-leave-to {
-  opacity: 0;
+  max-height: 0px;
+  opacity: 0.4;
+  max-width: 0px;
+}
+
+.image-enter-active,
+.image-leave-active {
+  transition: opacity 0.8s;
+  max-width: 100%;
+}
+
+.image-enter,
+.image-leave-to {
+  opacity: 0.4;
+  max-width: 0px;
 }
 
 .bubble {
@@ -382,7 +400,7 @@ export default {
     max-width: 119em;
     margin: 0 auto;
     position: relative;
-    height: 45em;
+    height: 55em;
   }
 
   &__graphics-wrapper {
@@ -412,6 +430,10 @@ export default {
     &--show {
       display: block;
     }
+  }
+
+  &__button-wrapper {
+    height: 10em;
   }
 
   &__content {
