@@ -264,7 +264,7 @@ export default {
       showMediBenefit: false,
     };
   },
-  mounted() {
+  created() {
     this.preloadImages();
   },
   computed: {
