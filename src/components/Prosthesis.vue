@@ -299,10 +299,11 @@ export default {
       const ceramicCroneImg = new Image();
       const inlayImg = new Image();
 
-      ceramicImg.src = require('../../public/ZE-Keramikbruecke.png');
-      implantantImg.src = require('../../public/ZE-Implantat.png');
-      ceramicCroneImg.src = require('../../public/ZE-Keramikkrone.png');
-      inlayImg.src = require('../../public/ZE-Inlay.png');
+      // ceramicImg.src = require('./../public/ZE-Keramikbruecke.png');
+      ceramicImg.src = require('./../../public/ZE-Keramikbruecke.png');
+      implantantImg.src = require('./../../public/ZE-Implantat.png');
+      ceramicCroneImg.src = require('./../../public/ZE-Keramikkrone.png');
+      inlayImg.src = require('./../../public/ZE-Inlay.png');
 
       this.ceramicImg = ceramicImg;
       this.implantantImg = implantantImg;

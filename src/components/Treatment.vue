@@ -326,9 +326,9 @@ export default {
       const cleaningImg = new Image();
       const professionalCleanImg = new Image();
 
-      otherTreatmentImg.src = require('../../public/ZE-Keramikbruecke.png');
-      cleaningImg.src = require('../../public/ZE-Implantat.png');
-      professionalCleanImg.src = require('../../public/ZE-Keramikkrone.png');
+      otherTreatmentImg.src = require('./../../public/ZE-Keramikbruecke.png');
+      cleaningImg.src = require('./../../public/ZE-Implantat.png');
+      professionalCleanImg.src = require('./../../public/ZE-Keramikkrone.png');
 
       this.otherTreatmentImg = otherTreatmentImg;
       this.cleaningImg = cleaningImg;
