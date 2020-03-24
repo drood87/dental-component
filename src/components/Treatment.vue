@@ -354,7 +354,7 @@ export default {
 .image-enter,
 .image-leave-to {
   opacity: 0.4;
-  max-width: 5%;
+  max-width: 0px;
 }
 
 .bubble {
