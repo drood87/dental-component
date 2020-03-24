@@ -8,7 +8,7 @@
         "
       >
         <img
-          src="./../assets/ZB-leer.png"
+          :src="emptyDefaultImg"
           alt="Zahnersatz leer"
           class="dental__graphic"
           :class="isDetailedGraphicActive ? 'dental__graphic--default' : ''"
@@ -195,8 +195,16 @@
 <script>
 export default {
   name: 'prothesis',
+  props: {
+    ceramicBridge: String,
+    implantant: String,
+    crone: String,
+    inlay: String,
+    defaultImg: String,
+  },
   data() {
     return {
+      emptyDefaultImg: this.defaultImg,
       activeGraphic: false,
       detailedGraphics: {
         graphic1: false,
@@ -207,7 +215,7 @@ export default {
       isDetailedGraphicActive: false,
       content: {
         graphic1: {
-          graphicPath: '',
+          graphicPath: this.ceramicBridge,
           altText: 'Vollkeramik-Brücke',
           headline: 'Vollkeramik-Brücke',
           approxPrice: '1.800 €',
@@ -217,7 +225,7 @@ export default {
           priceWithMediz: '180 €',
         },
         graphic2: {
-          graphicPath: '',
+          graphicPath: this.implantant,
           altText: 'Implantant',
           headline: 'Implantant',
           approxPrice: '3.950 €',
@@ -227,7 +235,7 @@ export default {
           priceWithMediz: '395 €',
         },
         graphic3: {
-          graphicPath: '',
+          graphicPath: this.crone,
           altText: 'Vollkeramik-Krone',
           headline: 'Vollkeramik-Krone',
           approxPrice: '1.000 €',
@@ -237,7 +245,7 @@ export default {
           priceWithMediz: '100 €',
         },
         graphic4: {
-          graphicPath: '',
+          graphicPath: this.inlay,
           altText: 'Keramik-Inlay',
           headline: 'Keramik-Inlay',
           approxPrice: '660 €',
@@ -260,9 +268,7 @@ export default {
       showMediBenefit: false,
     };
   },
-  created() {
-    this.preloadImages();
-  },
+
   computed: {
     benefitStyles() {
       return {
@@ -288,28 +294,6 @@ export default {
     },
     toggleBenefits() {
       this.showMediBenefit = !this.showMediBenefit;
-    },
-    preloadImages() {
-      const ceramicImg = new Image();
-      const implantantImg = new Image();
-      const ceramicCroneImg = new Image();
-      const inlayImg = new Image();
-
-      // ceramicImg.src = require('./../public/ZE-Keramikbruecke.png');
-      ceramicImg.src = require('./../../public/ZE-Keramikbruecke.png');
-      implantantImg.src = require('./../../public/ZE-Implantat.png');
-      ceramicCroneImg.src = require('./../../public/ZE-Keramikkrone.png');
-      inlayImg.src = require('./../../public/ZE-Inlay.png');
-
-      this.ceramicImg = ceramicImg;
-      this.implantantImg = implantantImg;
-      this.ceramicCroneImg = ceramicCroneImg;
-      this.inlayImg = inlayImg;
-
-      this.content.graphic1.graphicPath = ceramicImg.src;
-      this.content.graphic2.graphicPath = implantantImg.src;
-      this.content.graphic3.graphicPath = ceramicCroneImg.src;
-      this.content.graphic4.graphicPath = inlayImg.src;
     },
   },
 };

@@ -8,7 +8,7 @@
         "
       >
         <img
-          src="./../assets/ZB-leer.png"
+          :src="emptyDefaultImg"
           alt="Zahnersatz leer"
           class="dental__graphic"
           :class="
@@ -236,10 +236,12 @@ export default {
     other: String,
     cleaning: String,
     filling: String,
+    defaultImg: String,
   },
   data() {
     return {
       activeGraphic: false,
+      emptyDefaultImg: this.defaultImg,
       detailedGraphics: {
         graphic1: false,
         graphic2: false,

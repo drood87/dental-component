@@ -23,6 +23,7 @@
       :other="otherTreatmentImg"
       :cleaning="cleaningImg"
       :filling="fillingImg"
+      :defaultImg="defaultImg"
     ></treatment>
     <prosthesis
       v-if="isDentalView"
@@ -30,6 +31,7 @@
       :implantant="implantantImg"
       :crone="ceramicCroneImg"
       :inlay="inlayImg"
+      :defaultImg="defaultImg"
     ></prosthesis>
   </div>
 </template>
@@ -48,6 +50,7 @@ export default {
     return {
       isDentalView: true,
       isProsthesisView: false,
+      defaultImg: '',
       otherTreatmentImg: '',
       cleaningImg: '',
       fillingImg: '',
@@ -62,7 +65,7 @@ export default {
   },
   methods: {
     toggleView(view) {
-      if (view === 'dentalCare' && !this.isDentalView) {
+      if (view === 'treatment' && !this.isDentalView) {
         this.isProsthesisView = false;
         this.isDentalView = !this.isDentalView;
       } else if (view === 'prosthesis' && !this.isProsthesisView) {
@@ -71,7 +74,12 @@ export default {
       }
     },
     preloadImages() {
-      //treatment Zahnbehandlung
+      const defaultImg = new Image();
+
+      defaultImg.src = require('./../public/ZB-leer.png');
+
+      this.defaultImg = defaultImg.src;
+
       const otherTreatmentImg = new Image();
       const cleaningImg = new Image();
       const fillingImg = new Image();
@@ -84,31 +92,20 @@ export default {
       this.cleaningImg = cleaningImg.src;
       this.fillingImg = fillingImg.src;
 
-      // this.content.graphic1.graphicPath = otherTreatmentImg.src;
-      // this.content.graphic2.graphicPath = cleaningImg.src;
-      // this.content.graphic3.graphicPath = professionalCleanImg.src;
-
-      // prosthesis Zahnersatz
       const ceramicImg = new Image();
       const implantantImg = new Image();
       const ceramicCroneImg = new Image();
       const inlayImg = new Image();
 
-      // ceramicImg.src = require('./../public/ZE-Keramikbruecke.png');
       ceramicImg.src = require('./../public/ZE-Keramikbruecke.png');
       implantantImg.src = require('./../public/ZE-Implantat.png');
       ceramicCroneImg.src = require('./../public/ZE-Keramikkrone.png');
       inlayImg.src = require('./../public/ZE-Inlay.png');
 
-      this.ceramicImg = ceramicImg;
-      this.implantantImg = implantantImg;
-      this.ceramicCroneImg = ceramicCroneImg;
-      this.inlayImg = inlayImg;
-
-      // this.content.graphic1.graphicPath = ceramicImg.src;
-      // this.content.graphic2.graphicPath = implantantImg.src;
-      // this.content.graphic3.graphicPath = ceramicCroneImg.src;
-      // this.content.graphic4.graphicPath = inlayImg.src;
+      this.ceramicImg = ceramicImg.src;
+      this.implantantImg = implantantImg.src;
+      this.ceramicCroneImg = ceramicCroneImg.src;
+      this.inlayImg = inlayImg.src;
     },
   },
 };
