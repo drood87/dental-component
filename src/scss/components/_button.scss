@@ -32,11 +32,7 @@
 
   &-primary {
     color: $white;
-    background-image: linear-gradient(
-      to bottom,
-      $color-btn-gradient-start,
-      $color-btn-gradient-end
-    );
+    background-image: linear-gradient(to bottom, $color-btn-gradient-start, $color-btn-gradient-end);
     box-shadow: 0 3px 6px 0 rgba($black, 0.16);
 
     &:hover,
@@ -66,7 +62,7 @@
 
     @include media-breakpoint-up(lg) {
       padding: 1.5em;
-      width: 80%;
+      width: 90%;
     }
   }
 }

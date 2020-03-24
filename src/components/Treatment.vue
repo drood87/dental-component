@@ -328,7 +328,7 @@ export default {
 
 <style lang="scss" scoped>
 @import './../main.scss';
-@import './../scss/components/_button.scss';
+@import './../scss/components/button';
 
 .content-enter-active,
 .content-leave-active {
