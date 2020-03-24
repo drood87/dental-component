@@ -108,9 +108,15 @@
         <p>2 x Jahr ärztlich empfohlen</p>
       </div>
       <transition-group name="content" mode="out-in">
-        <div class="dental__content" v-if="isDetailedGraphicActive" :key="activeGraphic">
+        <div
+          class="dental__content"
+          v-if="isDetailedGraphicActive"
+          :key="activeGraphic"
+        >
           <div class="dental__content-wrapper">
-            <h3 class="dental__content-headline">{{ askedContent.headline }}</h3>
+            <h3 class="dental__content-headline">
+              {{ askedContent.headline }}
+            </h3>
             <div
               class="dental__content-list"
               :class="
@@ -122,32 +128,53 @@
               <div
                 class="dental__content-desc"
                 v-if="askedContent !== content.graphic2"
-              >durchschnittl. Kosten</div>
-              <div class="dental__content-desc" v-else>Ø Kosten für 2 Behandlungen</div>
-              <div class="dental__content-price">{{ askedContent.approxPrice }}</div>
-              <div class="dental__content-desc" v-if="askedContent === content.graphic1">
+              >
+                durchschnittl. Kosten
+              </div>
+              <div class="dental__content-desc" v-else>
+                Ø Kosten für 2 Behandlungen
+              </div>
+              <div class="dental__content-price">
+                {{ askedContent.approxPrice }}
+              </div>
+              <div
+                class="dental__content-desc"
+                v-if="askedContent === content.graphic1"
+              >
                 Zahnversieglung
                 <b>je Zahn</b>
               </div>
               <div
                 class="dental__content-price"
                 v-if="askedContent === content.graphic1"
-              >{{ askedContent.sealPerTooth }}</div>
-              <div class="dental__content-desc" v-if="askedContent === content.graphic1">
+              >
+                {{ askedContent.sealPerTooth }}
+              </div>
+              <div
+                class="dental__content-desc"
+                v-if="askedContent === content.graphic1"
+              >
                 Fluoridieren
                 <b>je Zahn</b>
               </div>
               <div
                 class="dental__content-price"
                 v-if="askedContent === content.graphic1"
-              >{{ askedContent.fluoridatePerTooth }}</div>
-              <div class="dental__content-desc" v-if="askedContent !== content.graphic1">
+              >
+                {{ askedContent.fluoridatePerTooth }}
+              </div>
+              <div
+                class="dental__content-desc"
+                v-if="askedContent !== content.graphic1"
+              >
                 <b>GKV</b> übernimmt i.d.R.:
               </div>
               <div
                 class="dental__content-price dental__content-price--neg"
                 v-if="askedContent !== content.graphic1"
-              >{{ askedContent.gkvShare }}</div>
+              >
+                {{ askedContent.gkvShare }}
+              </div>
               <div
                 class="dental__content-desc"
                 v-if="showMediBenefit && askedContent !== content.graphic1"
@@ -157,7 +184,9 @@
               <div
                 class="dental__content-price dental__content-price--neg"
                 v-if="showMediBenefit"
-              >{{ askedContent.medizShare }}</div>
+              >
+                {{ askedContent.medizShare }}
+              </div>
             </div>
 
             <div
@@ -166,26 +195,32 @@
               v-if="askedContent !== content.graphic1"
             >
               <div class="dental__content-desc">Ihr Eigenanteil:</div>
-              <div
-                class="dental__content-price dental__content-price--big"
-              >{{ askedContent.ownShare }}</div>
+              <div class="dental__content-price dental__content-price--big">
+                {{ askedContent.ownShare }}
+              </div>
             </div>
             <div class="dental__button-wrapper" v-if="!showMediBenefit">
               <button
                 class="god-btn god-btn-secondary"
                 v-if="!showMediBenefit"
                 @click="toggleBenefits"
-              >Was bringt MediZ Duo?</button>
+              >
+                Was bringt MediZ Duo?
+              </button>
             </div>
           </div>
           <div class="dental__benefit-wrapper" v-if="showMediBenefit">
             <div class="dental__benefit-content">
               <div class="dental__benefit-desc">Dank MediZ Duo:</div>
-              <div class="dental__benefit-price">{{ askedContent.priceWithMediz }}</div>
+              <div class="dental__benefit-price">
+                {{ askedContent.priceWithMediz }}
+              </div>
               <p
                 class="dental__benefit-price dental__benefit-price--small-hint"
                 v-if="askedContent === content.graphic2"
-              >bis 150€ im Jahr!</p>
+              >
+                bis 150€ im Jahr!
+              </p>
             </div>
           </div>
         </div>
@@ -197,12 +232,14 @@
 <script>
 export default {
   name: 'prothesis',
+  props: {
+    other: String,
+    cleaning: String,
+    filling: String,
+  },
   data() {
     return {
       activeGraphic: false,
-      otherTreatmentImg: '',
-      cleaningImg: '',
-      professionalCleanImg: '',
       detailedGraphics: {
         graphic1: false,
         graphic2: false,
@@ -211,7 +248,7 @@ export default {
       isDetailedGraphicActive: false,
       content: {
         graphic1: {
-          graphicPath: '',
+          graphicPath: this.other,
           altText: 'Sonstige Behandlungen',
           headline: 'Sonstige Behandlungen',
           approxPrice: '',
@@ -223,7 +260,7 @@ export default {
           priceWithMediz: 'kostenfrei',
         },
         graphic2: {
-          graphicPath: '',
+          graphicPath: this.cleaning,
           altText: 'Professionelle Zahnreinigung',
           headline: 'Professionelle Zahnreinigung',
           approxPrice: '150 €',
@@ -233,7 +270,7 @@ export default {
           priceWithMediz: 'kostenfrei',
         },
         graphic3: {
-          graphicPath: '',
+          graphicPath: this.filling,
           altText: 'Kunststofffüllung',
           headline: 'Kunststofffüllung',
           approxPrice: '100 €',
@@ -257,9 +294,6 @@ export default {
       },
       showMediBenefit: false,
     };
-  },
-  created() {
-    this.preloadImages();
   },
   computed: {
     benefitStyles() {
@@ -285,23 +319,6 @@ export default {
     },
     toggleBenefits() {
       this.showMediBenefit = !this.showMediBenefit;
-    },
-    preloadImages() {
-      const otherTreatmentImg = new Image();
-      const cleaningImg = new Image();
-      const professionalCleanImg = new Image();
-
-      otherTreatmentImg.src = require('./../../public/ZE-Keramikbruecke.png');
-      cleaningImg.src = require('./../../public/ZE-Implantat.png');
-      professionalCleanImg.src = require('./../../public/ZE-Keramikkrone.png');
-
-      this.otherTreatmentImg = otherTreatmentImg;
-      this.cleaningImg = cleaningImg;
-      this.proprofessionalCleanImg = professionalCleanImg;
-
-      this.content.graphic1.graphicPath = otherTreatmentImg.src;
-      this.content.graphic2.graphicPath = cleaningImg.src;
-      this.content.graphic3.graphicPath = professionalCleanImg.src;
     },
   },
 };

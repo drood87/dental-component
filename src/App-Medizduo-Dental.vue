@@ -4,7 +4,7 @@
       <ul class="nav__list">
         <li
           class="nav__item"
-          @click="toggleView('dentalCare')"
+          @click="toggleView('treatment')"
           :class="!isDentalView ? 'nav__item--not-active' : ''"
         >
           Zahnbehandlung
@@ -18,8 +18,19 @@
         </li>
       </ul>
     </nav>
-    <prosthesis v-if="isDentalView"></prosthesis>
-    <treatment v-if="isProsthesisView"></treatment>
+    <treatment
+      v-if="isProsthesisView"
+      :other="otherTreatmentImg"
+      :cleaning="cleaningImg"
+      :filling="fillingImg"
+    ></treatment>
+    <prosthesis
+      v-if="isDentalView"
+      :ceramicBridge="ceramicImg"
+      :implantant="implantantImg"
+      :crone="ceramicCroneImg"
+      :inlay="inlayImg"
+    ></prosthesis>
   </div>
 </template>
 
@@ -37,7 +48,17 @@ export default {
     return {
       isDentalView: true,
       isProsthesisView: false,
+      otherTreatmentImg: '',
+      cleaningImg: '',
+      fillingImg: '',
+      ceramicImg: '',
+      implantantImg: '',
+      ceramicCroneImg: '',
+      inlayImg: '',
     };
+  },
+  created() {
+    this.preloadImages();
   },
   methods: {
     toggleView(view) {
@@ -48,6 +69,46 @@ export default {
         this.isDentalView = false;
         this.isProsthesisView = !this.isProsthesisView;
       }
+    },
+    preloadImages() {
+      //treatment Zahnbehandlung
+      const otherTreatmentImg = new Image();
+      const cleaningImg = new Image();
+      const fillingImg = new Image();
+
+      otherTreatmentImg.src = require('./../public/ZB-Sonstige.png');
+      cleaningImg.src = require('./../public/ZB-PZR.png');
+      fillingImg.src = require('./../public/ZB-Fuellung.png');
+
+      this.otherTreatmentImg = otherTreatmentImg.src;
+      this.cleaningImg = cleaningImg.src;
+      this.fillingImg = fillingImg.src;
+
+      // this.content.graphic1.graphicPath = otherTreatmentImg.src;
+      // this.content.graphic2.graphicPath = cleaningImg.src;
+      // this.content.graphic3.graphicPath = professionalCleanImg.src;
+
+      // prosthesis Zahnersatz
+      const ceramicImg = new Image();
+      const implantantImg = new Image();
+      const ceramicCroneImg = new Image();
+      const inlayImg = new Image();
+
+      // ceramicImg.src = require('./../public/ZE-Keramikbruecke.png');
+      ceramicImg.src = require('./../public/ZE-Keramikbruecke.png');
+      implantantImg.src = require('./../public/ZE-Implantat.png');
+      ceramicCroneImg.src = require('./../public/ZE-Keramikkrone.png');
+      inlayImg.src = require('./../public/ZE-Inlay.png');
+
+      this.ceramicImg = ceramicImg;
+      this.implantantImg = implantantImg;
+      this.ceramicCroneImg = ceramicCroneImg;
+      this.inlayImg = inlayImg;
+
+      // this.content.graphic1.graphicPath = ceramicImg.src;
+      // this.content.graphic2.graphicPath = implantantImg.src;
+      // this.content.graphic3.graphicPath = ceramicCroneImg.src;
+      // this.content.graphic4.graphicPath = inlayImg.src;
     },
   },
 };

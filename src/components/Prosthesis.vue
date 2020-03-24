@@ -198,10 +198,6 @@ export default {
   data() {
     return {
       activeGraphic: false,
-      ceramicImg: '',
-      implantantImg: '',
-      ceramicCroneImg: '',
-      inlayImg: '',
       detailedGraphics: {
         graphic1: false,
         graphic2: false,
