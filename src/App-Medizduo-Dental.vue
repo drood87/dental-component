@@ -61,6 +61,7 @@ export default {
     };
   },
   created() {
+    console.log('created');
     this.preloadImages();
   },
   methods: {

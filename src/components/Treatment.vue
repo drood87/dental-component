@@ -347,14 +347,16 @@ export default {
 
 .image-enter-active,
 .image-leave-active {
-  transition: opacity 0.8s;
+  transition: opacity 1.2s;
   max-width: 100%;
+  animation-fill-mode: forwards;
 }
 
 .image-enter,
 .image-leave-to {
-  opacity: 0.4;
+  opacity: 0.3;
   max-width: 0px;
+  animation-fill-mode: forwards;
 }
 
 .bubble {
@@ -454,7 +456,7 @@ export default {
     height: 90%;
 
     &-headline {
-      font-size: 3em;
+      font-size: 2.8em;
       font-weight: 500;
       margin-bottom: 2em;
 
@@ -473,7 +475,10 @@ export default {
     }
 
     &-list {
-      font-size: 1.8em;
+      font-size: 2em;
+      font-weight: 300;
+      letter-spacing: 1px;
+
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
@@ -499,7 +504,7 @@ export default {
       }
 
       &--big {
-        font-size: 2.5em;
+        font-size: 2em;
 
         @include media-breakpoint-up(lg) {
           font-size: 2em;
@@ -529,7 +534,7 @@ export default {
       &--strikethrough {
         &:after {
           content: '';
-          top: 2.1em;
+          top: 1.7em;
           left: 0;
           height: 0.1em;
           background: $red;
@@ -580,10 +585,6 @@ export default {
           font-size: 1.1em;
         }
       }
-
-      // @include media-breakpoint-up(lg) {
-      //   font-size: 1.1em;
-      // }
     }
   }
 
