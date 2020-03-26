@@ -5,7 +5,7 @@
         <li
           class="nav__item"
           @click="toggleView('treatment')"
-          :class="!isDentalView ? 'nav__item--not-active' : ''"
+          :class="!isTreatmentView ? 'nav__item--not-active' : ''"
         >
           Zahnbehandlung
         </li>
@@ -19,14 +19,14 @@
       </ul>
     </nav>
     <treatment
-      v-if="isProsthesisView"
+      v-if="isTreatmentView"
       :other="otherTreatmentImg"
       :cleaning="cleaningImg"
       :filling="fillingImg"
       :defaultImg="defaultImg"
     ></treatment>
     <prosthesis
-      v-if="isDentalView"
+      v-if="isProsthesisView"
       :ceramicBridge="ceramicImg"
       :implantant="implantantImg"
       :crone="ceramicCroneImg"
@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      isDentalView: true,
+      isTreatmentView: true,
       isProsthesisView: false,
       defaultImg: '',
       otherTreatmentImg: '',
@@ -61,16 +61,15 @@ export default {
     };
   },
   created() {
-    console.log('created');
     this.preloadImages();
   },
   methods: {
     toggleView(view) {
-      if (view === 'treatment' && !this.isDentalView) {
+      if (view === 'treatment' && !this.isTreatmentView) {
         this.isProsthesisView = false;
-        this.isDentalView = !this.isDentalView;
+        this.isTreatmentView = !this.isTreatmentView;
       } else if (view === 'prosthesis' && !this.isProsthesisView) {
-        this.isDentalView = false;
+        this.isTreatmentView = false;
         this.isProsthesisView = !this.isProsthesisView;
       }
     },
